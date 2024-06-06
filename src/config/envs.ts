@@ -26,3 +26,4 @@ export const envs = {
     port: envVars.PORT,
     databaseUrl: envVars.DATABASE_URL
 }
+
