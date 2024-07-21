@@ -10,23 +10,21 @@ async function bootstrap() {
     {
       transport: Transport.TCP, //el tipo de comunicación
       options: {
-        port: envs.port //el port en el que corre el microservicio
-      }
-    }
+        port: envs.port, //el port en el que corre el microservicio
+      },
+    },
   );
 
-
-  const logger = new Logger("Main")
+  const logger = new Logger('Main');
 
   app.useGlobalPipes(
     new ValidationPipe({
-    whitelist: true,
-    forbidNonWhitelisted: true,
-    })
-   );
-
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
 
   await app.listen();
-  logger.log(`Products Microservices running on port ${envs.port}`)
+  logger.log(`Products Microservices running on port ${envs.port}`);
 }
 bootstrap();
