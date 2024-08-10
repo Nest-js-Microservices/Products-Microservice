@@ -8,14 +8,17 @@ async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
     {
-      transport: Transport.TCP, //el tipo de comunicación
+      transport: Transport.NATS, //el tipo de comunicación
       options: {
-        port: envs.port, //el port en el que corre el microservicio
+        //port: envs.port, //el port en el que corre el microservicio
+        servers: envs.nats_server,
       },
     },
   );
 
   const logger = new Logger('Main');
+
+  console.log(envs.nats_server); //[ 'nats://localhost:4222', 'nats://localhost:4223' ]
 
   app.useGlobalPipes(
     new ValidationPipe({
